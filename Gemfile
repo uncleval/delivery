@@ -56,3 +56,5 @@ group :development do
   gem "bullet"
 end
 
+
+gem "devise", "~> 4.9"
