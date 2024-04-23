@@ -19,14 +19,32 @@ if !admin
   admin.save!
 end
 
+["Aracelis Weissnat", "Pasquale Wisozk"].each do |buyer|
+  email = buyer.split.map { |s| s.downcase }.join(".")
+  user = User.find_by(email: email)
+  if !user
+    user = User.new(
+      email: "#{email}@example.com",
+      password: "123456",
+      password_confirmation: "123456",
+      role: :buyer
+    )
+    user.save!
+  end
+end
+
 ["Orange Curry", "Belly King"].each do |store|
-  user = User.new(
-    email: "#{store.split.map { |s| s.downcase }.join(".")}@example.com",
-    password: "123456",
-    password_confirmation: "123456",
-    role: :seller
-  )
-  user.save!
+  email = store.split.map { |s| s.downcase }.join(".")
+  user = User.find_by(email: email)
+  if !user
+    user = User.new(
+      email: "#{email}@example.com",
+      password: "123456",
+      password_confirmation: "123456",
+      role: :seller
+    )
+    user.save!
+  end
 
   Store.find_or_create_by!(name: store, user: user)
 end
@@ -38,7 +56,7 @@ end
   "Fish and Chips",
   "Pasta Carbonara"
 ].each do |dish|
-  store = Store.find_by(name: "Orange Curry")
+  store = Store.find_or_create_by(name: "Orange Curry")
   Product.find_or_create_by!(title: dish, store: store)
 end
 
