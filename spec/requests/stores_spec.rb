@@ -14,7 +14,12 @@ require 'rails_helper'
 
 RSpec.describe "/stores", type: :request do
   let(:user) {
-    user = User.new(email: "user@example.com", password: "123456", password_confirmation: "123456")
+    user = User.new(
+      email: "user@example.com",
+      password: "123456",
+      password_confirmation: "123456",
+      role: :seller
+    )
     user.save!
     user
   }
