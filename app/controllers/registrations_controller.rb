@@ -34,10 +34,11 @@ class RegistrationsController < ApplicationController
         format.json { render json: {"email": @user.email} }
       end
     else
-      respond_to do |format|
-        # format.html { render :new, status: :unprocessable_entity }
-        format.json { render :error, status: :unprocessable_entity }
-      end
+      # respond_to do |format|
+      #   # format.html { render :new, status: :unprocessable_entity }
+      #   format.json { render :error, status: :unprocessable_entity }
+      # end
+      render json: {}, status: :unprocessable_entity
     end
   end
 
