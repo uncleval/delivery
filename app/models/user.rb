@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   class InvalidToken < StandardError; end
   enum :role, [:admin, :seller, :buyer]
+
   has_many :stores
 
   validates :role, presence: true
