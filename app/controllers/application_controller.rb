@@ -7,12 +7,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def set_locale!
-    if params[:locale].present?
-      I18n.locale = params[:locale]
-    end
-  end
-
   def current_user
     if request.format == Mime[:json]
       @user
@@ -28,6 +22,12 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def set_locale!
+    if params[:locale].present?
+      I18n.locale = params[:locale]
+    end
+  end
 
   def buyer?
     (current_user && current_user.buyer?) && current_credential.buyer?

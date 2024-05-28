@@ -1,6 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :authenticate!
-  before_action :set_locale!
+  before_action :authenticate!, :set_locale!
 
   def listing
     if !current_user.admin?
